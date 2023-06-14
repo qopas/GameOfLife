@@ -38,13 +38,13 @@ namespace GameOfLife
         const int healthCondition2 = 3; // three adjacent dots required to grow
         */
 
-        
 
-        
+
+
         const int Xoffset = 160; //X offset from upper left corner of window
         const int Yoffset = 40;
 
-        public static int gridSize = 5; // distance between grids
+        public static int gridSize = 6; // distance between grids
         public static int cellSize = 4; //radius of dots
 
         public static bool gridChanged = false;
@@ -75,26 +75,26 @@ namespace GameOfLife
 
 
         SolidBrush dotcolor = new SolidBrush(Color.LavenderBlush);
-        SolidBrush backcolor = new SolidBrush(Color.DarkGoldenrod);
+        SolidBrush backcolor = new SolidBrush(Color.SeaGreen);
         //SolidBrush shadowcolor = new SolidBrush(Color.LightSalmon);
 
 
         static bool[,] board = new bool[WidthX, WidthY];
         static bool[,] oldboard = new bool[WidthX, WidthY];
         static bool[][,] rgbboardhistory = new bool[7][,]; //[ new bool[WidthX,WidthY]; // = new bool[,]>();
-        
-        
+
+
         static Color[] ShadowColors = new Color[] { Color.FromArgb(237,213,186),
                                                     Color.FromArgb(228,200,156),
                                                     Color.FromArgb(219,186,127),
                                                     Color.FromArgb(210,173,98),
                                                     Color.FromArgb(201,160,68),
                                                     Color.FromArgb(192,146,39),
-                                                    Color.DarkGoldenrod
+                                                    Color.SeaGreen
 
         };
-        
-        
+
+
 
         static Random rand = new Random();
 
@@ -143,7 +143,7 @@ namespace GameOfLife
 
 
 
-        
+
 
         public Form1()
         {
@@ -162,15 +162,15 @@ namespace GameOfLife
             using (var g = Graphics.FromImage(bmp))
             {
 
-                Rectangle rect = new Rectangle(0, 0, (WidthX * gridSize) + 2*gridSize + (gridSize / 2), (WidthY * gridSize) + 2*gridSize + (gridSize / 2));
+                Rectangle rect = new Rectangle(0, 0, (WidthX * gridSize) + 2 * gridSize + (gridSize / 2), (WidthY * gridSize) + 2 * gridSize + (gridSize / 2));
 
                 // Fill rectangle to screen.
                 g.FillRectangle(backcolor, rect);
 
                 this.pictureBox1.Image = bmp;
             }
-            
-            
+
+
 
             for (int n = 0; n < 7; n++)
                 rgbboardhistory[n] = new bool[WidthX, WidthY];
@@ -208,13 +208,13 @@ namespace GameOfLife
 
         private void resizePicBox()
         {
-            this.Size = new Size(WidthX * gridSize - 220, WidthY * gridSize - 120);
+            //this.Size = new Size(WidthX * gridSize - 220, WidthY * gridSize - 120);
 
             pictureBox1.Width = ((WidthX * gridSize) + (gridSize / 2 + (gridSize % 2 > 0 ? 1 : 0))); // x/y + (x % y > 0 ? 1 : 0)
             pictureBox1.Height = ((WidthY * gridSize) + (gridSize / 2 + (gridSize % 2 > 0 ? 1 : 0)));
             pictureBox1.Refresh();
 
-            
+
         }
 
         private void Timer1_Tick(object sender, EventArgs e)
@@ -248,13 +248,13 @@ namespace GameOfLife
             frameStopwatch.Start();
             if (drawMode == 0)
                 drawChangedCells(oldboard, board);
-                //drawBoard();
-            else if (drawMode >= 1 )
+            //drawBoard();
+            else if (drawMode >= 1)
                 drawChangedCellsShadowed(oldboard, board);
             frameStopwatch.Stop();
             drawAvg += (double)frameStopwatch.Elapsed.TotalMilliseconds;
             frameStopwatch.Reset();
-            
+
             frameCounter++;
 
         }
@@ -278,17 +278,17 @@ namespace GameOfLife
             using (var g = Graphics.FromImage(bmp))
             {
                 delPreviewImage(g, oldMousePos.Item1, oldMousePos.Item2);
-                
+
 
                 oldMousePos = mousePos;
 
                 if (isMouseOverPic == true)
                 {
                     previewImage(g, oldMousePos.Item1, oldMousePos.Item2);
-                    
+
                 }
             }
-            
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -305,14 +305,14 @@ namespace GameOfLife
                 timer1.Start();
                 timer2.Start();
             }
-            
+
         }
 
         void createRandomBoard()
         {
             Random rand = new Random();
-            for (int i = 0; i < WidthX-1; i++)
-                for (int j = 0; j < WidthY-1; j++)
+            for (int i = 0; i < WidthX - 1; i++)
+                for (int j = 0; j < WidthY - 1; j++)
                 {
                     bool rnd = rand.NextDouble() > 0.6;
                     board[i, j] = rnd;
@@ -329,7 +329,7 @@ namespace GameOfLife
             //SolidBrush myBlankBrush = backcolor;
             //myGraphics.DrawEllipse(myPen, 50, 50, 150, 150);
 
-           
+
             using (var g = Graphics.FromImage(bmp))
             {
                 for (int i = 0; i < WidthX; i++)
@@ -340,22 +340,22 @@ namespace GameOfLife
                             GraphicsExtensions.FillRectangle(g, dotcolor, i * gridSize + cellSize, j * gridSize + cellSize, cellSize);
                         else
                             GraphicsExtensions.FillRectangle(g, backcolor, i * gridSize + cellSize, j * gridSize + cellSize, cellSize);
-                        
+
                     }
                 this.pictureBox1.Image = bmp;
             }
-            
+
         }
 
 
 
         void drawChangedCells(bool[,] oldboard, bool[,] Tempboard)
         {
-            
+
             using (var g = Graphics.FromImage(bmp))
             {
                 delPreviewImage(g, oldMousePos.Item1, oldMousePos.Item2);
-                
+
 
                 for (int i = 0; i < WidthX; i++)
                 {
@@ -373,22 +373,22 @@ namespace GameOfLife
                 if (isMouseOverPic == true)
                 {
                     previewImage(g, oldMousePos.Item1, oldMousePos.Item2);
-                    
+
                 }
 
                 this.pictureBox1.Image = bmp;
             }
-            
-            
+
+
         }
 
 
         void drawChangedCellsShadowed(bool[,] oldboard, bool[,] Tempboard)
         {
-            
+
             using (var g = Graphics.FromImage(bmp))
             {
-                
+
                 delPreviewImage(g, oldMousePos.Item1, oldMousePos.Item2);
 
                 for (int i = 0; i < WidthX; i++)
@@ -407,16 +407,16 @@ namespace GameOfLife
                                 {
                                     if ((rgbboardhistory[n][i, j] == true) && (rgbboardhistory[n + 1][i, j] == false))
                                     {
-                                       /* if (drawMode == 1)
-                                            GraphicsExtensions.FillRectangle(g, new SolidBrush(ShadowColors[n + 2]), i * gridSize + cellSize, j * gridSize + cellSize, cellSize);
-                                        else if (drawMode == 2)
-                                            GraphicsExtensions.FillRectangle(g, new SolidBrush(ShadowColors[n + 1]), i * gridSize + cellSize, j * gridSize + cellSize, cellSize);
-                                        else if (drawMode == 3)*/
-                                            GraphicsExtensions.FillRectangle(g, new SolidBrush(ShadowColors[n]), i * gridSize + cellSize, j * gridSize + cellSize, cellSize);
+                                        /* if (drawMode == 1)
+                                             GraphicsExtensions.FillRectangle(g, new SolidBrush(ShadowColors[n + 2]), i * gridSize + cellSize, j * gridSize + cellSize, cellSize);
+                                         else if (drawMode == 2)
+                                             GraphicsExtensions.FillRectangle(g, new SolidBrush(ShadowColors[n + 1]), i * gridSize + cellSize, j * gridSize + cellSize, cellSize);
+                                         else if (drawMode == 3)*/
+                                        GraphicsExtensions.FillRectangle(g, new SolidBrush(ShadowColors[n]), i * gridSize + cellSize, j * gridSize + cellSize, cellSize);
                                     }
                                 }
                             }
-                            
+
 
                         }
 
@@ -432,7 +432,7 @@ namespace GameOfLife
                                     if ((rgbboardhistory[n][i, j] == true) && (rgbboardhistory[n + 1][i, j] == false))
                                     {
                                         /*if (drawMode == 1)*/
-                                            GraphicsExtensions.FillRectangle(g, new SolidBrush(ShadowColors[n + 2]), i * gridSize + cellSize, j * gridSize + cellSize, cellSize);
+                                        GraphicsExtensions.FillRectangle(g, new SolidBrush(ShadowColors[n + 2]), i * gridSize + cellSize, j * gridSize + cellSize, cellSize);
                                         /*else if (drawMode == 2)
                                             GraphicsExtensions.FillRectangle(g, new SolidBrush(ShadowColors[n + 1]), i * gridSize + cellSize, j * gridSize + cellSize, cellSize);
                                         else if (drawMode == 3)
@@ -449,7 +449,7 @@ namespace GameOfLife
                                 if ((rgbboardhistory[n][i, j] == true) && (rgbboardhistory[n + 1][i, j] == false))
                                 {
                                     //if (drawMode == 1)
-                                        GraphicsExtensions.FillRectangle(g, new SolidBrush(ShadowColors[n + 2]), i * gridSize + cellSize, j * gridSize + cellSize, cellSize);
+                                    GraphicsExtensions.FillRectangle(g, new SolidBrush(ShadowColors[n + 2]), i * gridSize + cellSize, j * gridSize + cellSize, cellSize);
                                     /*else if (drawMode == 2)
                                         GraphicsExtensions.FillRectangle(g, new SolidBrush(ShadowColors[n + 1]), i * gridSize + cellSize, j * gridSize + cellSize, cellSize);
                                     else if (drawMode == 3)
@@ -466,9 +466,9 @@ namespace GameOfLife
                                     //if (drawMode == 1)
                                     //GraphicsExtensions.FillRectangle(g, new SolidBrush(ShadowColors[n + 2]), i * gridSize + cellSize, j * gridSize + cellSize, cellSize);
                                     ///else if (drawMode == 2)
-                                        GraphicsExtensions.FillRectangle(g, new SolidBrush(ShadowColors[n + 1]), i * gridSize + cellSize, j * gridSize + cellSize, cellSize);
+                                    GraphicsExtensions.FillRectangle(g, new SolidBrush(ShadowColors[n + 1]), i * gridSize + cellSize, j * gridSize + cellSize, cellSize);
                                     //else if (drawMode == 3)
-                                        //GraphicsExtensions.FillRectangle(g, new SolidBrush(ShadowColors[n]), i * gridSize + cellSize, j * gridSize + cellSize, cellSize);*/
+                                    //GraphicsExtensions.FillRectangle(g, new SolidBrush(ShadowColors[n]), i * gridSize + cellSize, j * gridSize + cellSize, cellSize);*/
                                 }
                             }
                         }
@@ -488,14 +488,14 @@ namespace GameOfLife
                 if (isMouseOverPic == true)
                 {
                     previewImage(g, oldMousePos.Item1, oldMousePos.Item2);
-                    
+
                 }
 
                 this.pictureBox1.Image = bmp;
 
             }
-           
-            
+
+
         }
 
 
@@ -561,7 +561,7 @@ namespace GameOfLife
         }
         */
 
-      
+
 
         private void loadImagefromBMP(string BMPname)
         {
@@ -590,7 +590,7 @@ namespace GameOfLife
 
         private void loadImagetoPos(string BMPname, int Xoffset, int Yoffset)
         {
-            
+
             if (radioButton5.Checked)
             {
                 image1 = new Bitmap(Properties.Resources._1pxblack);
@@ -598,7 +598,7 @@ namespace GameOfLife
             else
                 image1 = new Bitmap(BMPname, true);
 
-            label1.Text = Path.GetFileName(BMPname) + Environment.NewLine 
+            label1.Text = Path.GetFileName(BMPname) + Environment.NewLine
                         + image1.PixelFormat.ToString().Substring(6) + Environment.NewLine
                         + image1.Height + " x " + image1.Width;
 
@@ -619,36 +619,36 @@ namespace GameOfLife
                 //((Yoffset / gridSize) < (WidthY - (image1.Height / 2) - 1))
                 )
             {
-               
-                    Debug.WriteLine("BMP fits into pos");
-                    
 
-                    int x, y;
+                Debug.WriteLine("BMP fits into pos");
 
-                    // Loop through the images pixels
-                    for (y = 0; y < image1.Height; y++)
+
+                int x, y;
+
+                // Loop through the images pixels
+                for (y = 0; y < image1.Height; y++)
+                {
+                    for (x = 0; x < image1.Width; x++)
                     {
-                        for (x = 0; x < image1.Width; x++)
-                        {
-                            int pixelColor = image1.GetPixel(x, y).ToArgb();
-                            //int empty = Color.Empty.ToArgb();
-                            int posX = (Xoffset / gridSize) + x;
-                            int posY = (Yoffset / gridSize) + y;
-                            //Debug.WriteLine("PosX: {0}   PosY: {1}", posX, posY);
-                            //Debug.WriteLine("Pixel: " + x + ":" + y + " - pixelcolor: " + pixelColor + " - empty: " + empty);
-                            if (pixelColor < -65794)
-                                board[posX, posY] = true;
-                            else
-                                board[posX, posY] = false;
+                        int pixelColor = image1.GetPixel(x, y).ToArgb();
+                        //int empty = Color.Empty.ToArgb();
+                        int posX = (Xoffset / gridSize) + x;
+                        int posY = (Yoffset / gridSize) + y;
+                        //Debug.WriteLine("PosX: {0}   PosY: {1}", posX, posY);
+                        //Debug.WriteLine("Pixel: " + x + ":" + y + " - pixelcolor: " + pixelColor + " - empty: " + empty);
+                        if (pixelColor < -65794)
+                            board[posX, posY] = true;
+                        else
+                            board[posX, posY] = false;
 
-                        }
                     }
-                
+                }
+
             }
             else
             {
                 Debug.WriteLine("doesn't fit: ");
-               
+
 
             }
         }
@@ -672,11 +672,11 @@ namespace GameOfLife
             if (BMPname == "")
                 return;
 
-            
 
-            
 
-            if (                
+
+
+            if (
                 (((Xoffset / gridSize) + (image1.Width - 1)) < (WidthX)) &&
                 (((Yoffset / gridSize) + (image1.Height - 1)) < (WidthY))
                 )
@@ -699,43 +699,43 @@ namespace GameOfLife
 
                 if (radioButton12.Checked)
                 {
-                    for (x = image1.Width - 1; x > 0;  x--)
+                    for (x = image1.Width - 1; x > 0; x--)
                     {
                         GraphicsExtensions.FillRectangle(g, FrameColor, _xoffset + x * gridSize + cellSize, _yoffset + cellSize, cellSize);
-                        GraphicsExtensions.FillRectangle(g, FrameColor, _xoffset + x * gridSize + cellSize, _yoffset + (image1.Height-1) * gridSize + cellSize, cellSize);
+                        GraphicsExtensions.FillRectangle(g, FrameColor, _xoffset + x * gridSize + cellSize, _yoffset + (image1.Height - 1) * gridSize + cellSize, cellSize);
                     }
-                    for (y = image1.Height - 1; y >= 0;  y--)
+                    for (y = image1.Height - 1; y >= 0; y--)
                     {
                         GraphicsExtensions.FillRectangle(g, FrameColor, _xoffset + cellSize, _yoffset + y * gridSize + cellSize, cellSize);
-                        GraphicsExtensions.FillRectangle(g, FrameColor, _xoffset + (image1.Width-1) * gridSize + cellSize, _yoffset + y * gridSize + cellSize, cellSize);
+                        GraphicsExtensions.FillRectangle(g, FrameColor, _xoffset + (image1.Width - 1) * gridSize + cellSize, _yoffset + y * gridSize + cellSize, cellSize);
                     }
                 }
 
                 // Loop through the images pixels
 
                 for (y = 0; y < image1.Height; y++)
+                {
+                    for (x = 0; x < image1.Width; x++)
                     {
-                        for (x = 0; x < image1.Width; x++)
-                        {
-                            int pixelColor = image1.GetPixel(x, y).ToArgb();
-                            //int empty = Color.Empty.ToArgb();
-                            
-                            //int posX = (Xoffset / gridSize) + x;
-                            //int posY = (Yoffset / gridSize) + y;
-                            
-                            //Debug.WriteLine("PosX: {0}   PosY: {1}", posX, posY);
-                            //Debug.WriteLine("Pixel: " + x + ":" + y + " - pixelcolor: " + pixelColor + " - empty: " + empty);
-                            if (pixelColor < -65794)
+                        int pixelColor = image1.GetPixel(x, y).ToArgb();
+                        //int empty = Color.Empty.ToArgb();
 
-                                GraphicsExtensions.FillRectangle(g, new SolidBrush(Color.LightSeaGreen), _xoffset + x * gridSize + cellSize, _yoffset + y * gridSize + cellSize, cellSize);
+                        //int posX = (Xoffset / gridSize) + x;
+                        //int posY = (Yoffset / gridSize) + y;
 
-                            //else
-                                //GraphicsExtensions.FillRectangle(g, backcolor, Xoffset + x * gridSize + cellSize, Yoffset + y * gridSize + cellSize, cellSize);
+                        //Debug.WriteLine("PosX: {0}   PosY: {1}", posX, posY);
+                        //Debug.WriteLine("Pixel: " + x + ":" + y + " - pixelcolor: " + pixelColor + " - empty: " + empty);
+                        if (pixelColor < -65794)
 
-                        }
+                            GraphicsExtensions.FillRectangle(g, new SolidBrush(Color.LightSeaGreen), _xoffset + x * gridSize + cellSize, _yoffset + y * gridSize + cellSize, cellSize);
+
+                        //else
+                        //GraphicsExtensions.FillRectangle(g, backcolor, Xoffset + x * gridSize + cellSize, Yoffset + y * gridSize + cellSize, cellSize);
+
                     }
-                    
-                
+                }
+
+
                 this.pictureBox1.Image = bmp;
 
             }
@@ -767,7 +767,7 @@ namespace GameOfLife
             if (BMPname == "")
                 return;
 
-            
+
 
 
 
@@ -779,20 +779,20 @@ namespace GameOfLife
                 )
             {
 
-               
+
                 int x, y;
 
                 int _xoffset = Xoffset - (Xoffset % gridSize);
                 int _yoffset = Yoffset - (Yoffset % gridSize);
 
-                
 
-                bool needPixelRestore = false; 
+
+                bool needPixelRestore = false;
 
                 if (radioButton12.Checked)
                 {
 
-                    
+
 
 
                     for (x = image1.Width - 1; x > 0; x--)
@@ -811,13 +811,13 @@ namespace GameOfLife
 
                         if (board[posX, ((_yoffset / gridSize) + image1.Height - 1)] == true)
                         {
-                            
-                            GraphicsExtensions.FillRectangle(g, dotcolor, _xoffset + x * gridSize + cellSize, _yoffset + (image1.Height-1) * gridSize + cellSize, cellSize);
+
+                            GraphicsExtensions.FillRectangle(g, dotcolor, _xoffset + x * gridSize + cellSize, _yoffset + (image1.Height - 1) * gridSize + cellSize, cellSize);
                             needPixelRestore = true;
                         }
-                        else 
-                        { 
-                            GraphicsExtensions.FillRectangle(g, backcolor, _xoffset + x * gridSize + cellSize, _yoffset + (image1.Height-1) * gridSize + cellSize, cellSize);
+                        else
+                        {
+                            GraphicsExtensions.FillRectangle(g, backcolor, _xoffset + x * gridSize + cellSize, _yoffset + (image1.Height - 1) * gridSize + cellSize, cellSize);
                         }
                     }
                     for (y = image1.Height - 1; y >= 0; y--)
@@ -826,13 +826,13 @@ namespace GameOfLife
                         if (board[(_xoffset / gridSize), posY] == true)
                         {
                             GraphicsExtensions.FillRectangle(g, dotcolor, _xoffset + cellSize, _yoffset + y * gridSize + cellSize, cellSize);
-                            
+
                             needPixelRestore = true;
                         }
                         else
                         {
                             GraphicsExtensions.FillRectangle(g, backcolor, _xoffset + cellSize, _yoffset + y * gridSize + cellSize, cellSize);
-                            
+
                         }
                         if (board[((_xoffset / gridSize) + image1.Width - 1), posY] == true)
                         {
@@ -858,30 +858,30 @@ namespace GameOfLife
                             (_yoffset < WidthY * gridSize)
                             )
                         {*/
-                            int pixelColor = image1.GetPixel(x, y).ToArgb();
-                            int empty = Color.Empty.ToArgb();
-                            int posX = (_xoffset / gridSize) + x;
-                            int posY = (_yoffset / gridSize) + y;
-                            //Debug.WriteLine("_xoffset: {0}", _xoffset);
-                            //Debug.WriteLine("_yoffset: {0}", _yoffset);
-                            //Debug.WriteLine("PosX: {0}   PosY: {1}", posX, posY);
-                            //Debug.WriteLine("Pixel: " + x + ":" + y + " - pixelcolor: " + pixelColor + " - empty: " + empty);
-                            if (pixelColor < -65794)
+                        int pixelColor = image1.GetPixel(x, y).ToArgb();
+                        int empty = Color.Empty.ToArgb();
+                        int posX = (_xoffset / gridSize) + x;
+                        int posY = (_yoffset / gridSize) + y;
+                        //Debug.WriteLine("_xoffset: {0}", _xoffset);
+                        //Debug.WriteLine("_yoffset: {0}", _yoffset);
+                        //Debug.WriteLine("PosX: {0}   PosY: {1}", posX, posY);
+                        //Debug.WriteLine("Pixel: " + x + ":" + y + " - pixelcolor: " + pixelColor + " - empty: " + empty);
+                        if (pixelColor < -65794)
+                        {
+                            if (board[posX, posY] == true)
                             {
-                                if (board[posX, posY] == true)
-                                {
-                                    GraphicsExtensions.FillRectangle(g, dotcolor, _xoffset + x * gridSize + cellSize, _yoffset + y * gridSize + cellSize, cellSize);
-                                    needPixelRestore = true;
-                                }
-                                else
-                                    GraphicsExtensions.FillRectangle(g, backcolor, _xoffset + x * gridSize + cellSize, _yoffset + y * gridSize + cellSize, cellSize);
+                                GraphicsExtensions.FillRectangle(g, dotcolor, _xoffset + x * gridSize + cellSize, _yoffset + y * gridSize + cellSize, cellSize);
+                                needPixelRestore = true;
                             }
+                            else
+                                GraphicsExtensions.FillRectangle(g, backcolor, _xoffset + x * gridSize + cellSize, _yoffset + y * gridSize + cellSize, cellSize);
+                        }
                         //}
                     }
                 }
 
                 //if (needPixelRestore)
-                    //drawBoard();
+                //drawBoard();
 
                 this.pictureBox1.Image = bmp;
 
@@ -905,7 +905,7 @@ namespace GameOfLife
 
         private void button2_Click(object sender, EventArgs e)
         {
-            loadImagefromBMP("pictures\\GOL1.bmp");
+            loadImagefromBMP("pictures\\spaceship1.bmp");
             if (!(timer1.Enabled))
                 drawBoard();
         }
@@ -922,10 +922,10 @@ namespace GameOfLife
 
         //protected override void OnPaint(PaintEventArgs e)
         //{
-            //base.OnPaint(e);
+        //base.OnPaint(e);
 
-            //var bmp = new Bitmap(this.pictureBox1.Width, this.pictureBox1.Height, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
-            
+        //var bmp = new Bitmap(this.pictureBox1.Width, this.pictureBox1.Height, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
+
 
         //}
 
@@ -935,13 +935,13 @@ namespace GameOfLife
             label3.Text = trackBar1.Value + " ms";
         }
 
-        
+
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
             if (radioButton1.Checked)
                 drawMode = 0;
-           
+
         }
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
@@ -962,14 +962,14 @@ namespace GameOfLife
                 drawMode = 3;
         }
 
-       
+
 
         private void button6_Click(object sender, EventArgs e)
         {
             for (int i = 0; i < WidthX; i++)
                 for (int j = 0; j < WidthY; j++)
                 {
-                    
+
                     board[i, j] = false;
                 }
 
@@ -998,16 +998,13 @@ namespace GameOfLife
             if (timer1.Enabled == false)
                 drawBoard();
 
-            
+
 
         }
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
-            //MouseEventArgs me = (MouseEventArgs)e;
             Point coordinates = e.Location;
-            //Debug.WriteLine(coordinates.ToString());
-            
             mousePos = new Tuple<int, int>(coordinates.X, coordinates.Y);
             if (e.Button == MouseButtons.Left)
                 if (radioButton5.Checked)
@@ -1020,8 +1017,6 @@ namespace GameOfLife
         private void pictureBox1_MouseEnter(object sender, EventArgs e)
         {
             isMouseOverPic = true;
-            //Cursor myCursor = new Cursor(Application.StartupPath + "\\Cursor1.cur");
-            //pictureBox1.Cursor = myCursor;
             pictureBox1.Cursor = redCrosshairCursor;
             if (timer1.Enabled == false)
                 timer3.Start();
@@ -1039,14 +1034,14 @@ namespace GameOfLife
                 oldMousePos = mousePos;
 
             }
-            }
+        }
 
         private void button4_Click(object sender, EventArgs e)
         {
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
-                
-                openFileDialog.InitialDirectory = Path.Combine(Application.StartupPath,@"Pictures");
+
+                openFileDialog.InitialDirectory = Path.Combine(Application.StartupPath, @"Pictures");
                 openFileDialog.Filter = "Bitmap (*.bmp)|*.bmp|All files (*.*)|*.*";
                 openFileDialog.FilterIndex = 1;
                 openFileDialog.RestoreDirectory = true;
@@ -1102,7 +1097,7 @@ namespace GameOfLife
         {
             Form2 settingsForm = new Form2();
 
-            
+
 
 
             // Show the settings form
@@ -1214,8 +1209,8 @@ namespace GameOfLife
         {
             if (fullscreen)
             {
-                
-                
+
+
                 if (timer1.Enabled)
                 {
                     timer1.Stop();
@@ -1226,11 +1221,11 @@ namespace GameOfLife
                 var newbounds = Screen.PrimaryScreen.Bounds;
                 int newWidthX = newbounds.Width / gridSize;
                 int newWidthY = newbounds.Height / gridSize;
-                
+
                 bool[,] newboard = new bool[newWidthX, newWidthY];
                 bool[,] newoldboard = new bool[newWidthX, newWidthY];
 
-                
+
                 oldLocation = pictureBox1.Location;
                 pictureBox1.Location = new Point(0, 0);
                 pictureBox1.Width = newbounds.Width;
@@ -1337,12 +1332,12 @@ namespace GameOfLife
                     T1wasRunning = true;
                 }
 
-                
+
 
                 pictureBox1.Location = oldLocation;
                 pictureBox1.Width = oldWidthX * gridSize;
                 pictureBox1.Height = oldWidthY * gridSize;
-                
+
                 //bmp = null;
                 bmp = new Bitmap((oldWidthX * gridSize) + (2 * gridSize), (oldWidthY * gridSize) + (2 * gridSize), System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
                 using (var g = Graphics.FromImage(bmp))
@@ -1416,7 +1411,7 @@ namespace GameOfLife
                     T1wasRunning = false;
                 }
 
-                
+
                 this.WindowState = FormWindowState.Maximized;
                 this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
             }
@@ -1425,16 +1420,16 @@ namespace GameOfLife
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            
+
             if (e.Alt && e.KeyCode == Keys.Enter)
             {
                 // ...
                 showFullScreen = !showFullScreen;
 
-                if (showFullScreen)
-                    GoFullscreen(true);
-                else
-                    GoFullscreen(false);
+               // if (showFullScreen)
+                    //GoFullscreen(true);
+               // else
+                   // GoFullscreen(false);
             }
             if (e.Alt && e.KeyCode == Keys.F)
             {
@@ -1447,7 +1442,7 @@ namespace GameOfLife
                     hideControls = !hideControls;
                 }
 
-                
+
             }
             if (e.Alt && e.KeyCode == Keys.R)
             {
@@ -1466,6 +1461,15 @@ namespace GameOfLife
 
         }
 
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+            ControlPaint.DrawBorder(e.Graphics, this.panel1.ClientRectangle, Color.DarkBlue, ButtonBorderStyle.Solid);
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+        }
     }
 
     public static class GraphicsExtensions
@@ -1487,7 +1491,7 @@ namespace GameOfLife
         public static void FillRectangle(this Graphics g, Brush brush, int x, int y, int size)
         {
             // Create rectangle.
-            Rectangle rect = new Rectangle(x - (size / 2), y - (size /2), size, size);
+            Rectangle rect = new Rectangle(x - (size / 2), y - (size / 2), size, size);
 
             // Fill rectangle to screen.
             g.FillRectangle(brush, rect);

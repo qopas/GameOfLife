@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {
+      "GameOfLife/1.0.0": {
+        "dependencies": {
+          "Automata": "1.0.0"
+        },
+        "runtime": {
+          "GameOfLife.dll": {}
+        }
+      },
+      "Automata/1.0.0": {
+        "runtime": {
+          "Automata.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "GameOfLife/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Automata/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
