@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Automata;
+using System.Media;
 
 namespace GameOfLife
 {
@@ -142,7 +143,7 @@ namespace GameOfLife
         }
 
 
-
+        private SoundPlayer soundPlayer;
 
 
         public Form1()
@@ -164,9 +165,22 @@ namespace GameOfLife
 
                 Rectangle rect = new Rectangle(0, 0, (WidthX * gridSize) + 2 * gridSize + (gridSize / 2), (WidthY * gridSize) + 2 * gridSize + (gridSize / 2));
 
-                // Fill rectangle to screen.
-                g.FillRectangle(backcolor, rect);
+                // Define the coordinates for dividing the rectangle into quadrants
+                int midX = rect.Width / 2;
 
+                // Fill the top-left quadrant with a color
+                Rectangle topLeft = new Rectangle(rect.Left, rect.Top, midX, rect.Height);
+                using (SolidBrush brush1 = new SolidBrush(Color.Red)) // Example color
+                {
+                    g.FillRectangle(brush1, topLeft);
+                }
+
+                // Fill the top-right quadrant with a color
+                Rectangle topRight = new Rectangle(midX, rect.Top, midX, rect.Height);
+                using (SolidBrush brush2 = new SolidBrush(Color.Blue)) // Example color
+                {
+                    g.FillRectangle(brush2, topRight);
+                }
                 this.pictureBox1.Image = bmp;
             }
 
@@ -204,6 +218,8 @@ namespace GameOfLife
             timer3.Interval = 30;
             timer3.Tick += Timer3_Tick;
 
+            soundPlayer = new SoundPlayer("C:\\Users\\user\\source\\repos\\qopas\\GameOfLife\\BackSong.wav");
+
         }
 
         private void resizePicBox()
@@ -234,7 +250,7 @@ namespace GameOfLife
             //board = calculateNextBoard();
             //board = algorithm.calculateNextBoard(board);
             if (drawMode == 2)
-                board = rule30.calculateNextBoardScanline(board);
+                board = rule30.calculateNextBoard(board);
             else if (drawMode == 3)
                 board = rule30.calculateNextBoard(board);
             else if (drawMode == 1)
@@ -335,12 +351,11 @@ namespace GameOfLife
                 for (int i = 0; i < WidthX; i++)
                     for (int j = 0; j < WidthY; j++)
                     {
-
                         if (board[i, j] == true)
                             GraphicsExtensions.FillRectangle(g, dotcolor, i * gridSize + cellSize, j * gridSize + cellSize, cellSize);
                         else
                             GraphicsExtensions.FillRectangle(g, backcolor, i * gridSize + cellSize, j * gridSize + cellSize, cellSize);
-
+                  
                     }
                 this.pictureBox1.Image = bmp;
             }
@@ -1233,7 +1248,7 @@ namespace GameOfLife
                 pictureBox1.SendToBack();
 
                 bmp = null;
-                bmp = new Bitmap((newWidthX * gridSize) + (2 * gridSize), (newWidthY * gridSize) + (2 * gridSize), System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
+                bmp = new Bitmap((newWidthX * gridSize) + (2 * gridSize), (newWidthY * gridSize) + (2 * gridSize), System.Drawing.Imaging.PixelFormat.Format32bppRgb);
 
                 using (var g = Graphics.FromImage(bmp))
                 {
@@ -1426,10 +1441,10 @@ namespace GameOfLife
                 // ...
                 showFullScreen = !showFullScreen;
 
-               // if (showFullScreen)
-                    //GoFullscreen(true);
-               // else
-                   // GoFullscreen(false);
+                // if (showFullScreen)
+                //GoFullscreen(true);
+                // else
+                // GoFullscreen(false);
             }
             if (e.Alt && e.KeyCode == Keys.F)
             {
@@ -1469,6 +1484,16 @@ namespace GameOfLife
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            soundPlayer.Play();
+
+            // Start the timer to check and replay the music
+            timer4.Interval = 1000; // 1 second interval (adjust as needed)
+            timer4.Start();
+        }
+
+        private void timer4_Tick(object sender, EventArgs e)
+        {
+          
         }
     }
 

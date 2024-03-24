@@ -10,3 +10,15 @@ C:\Users\user\Source\Repos\DennisSc\GameOfLife\Automata\obj\Debug\net5.0\Automat
 C:\Users\user\Source\Repos\DennisSc\GameOfLife\Automata\obj\Debug\net5.0\refint\Automata.dll
 C:\Users\user\Source\Repos\DennisSc\GameOfLife\Automata\obj\Debug\net5.0\Automata.pdb
 C:\Users\user\Source\Repos\DennisSc\GameOfLife\Automata\obj\Debug\net5.0\ref\Automata.dll
+C:\Users\user\Source\Repos\qopas\GameOfLife\Automata\bin\Debug\net5.0\Automata.deps.json
+C:\Users\user\Source\Repos\qopas\GameOfLife\Automata\bin\Debug\net5.0\Automata.dll
+C:\Users\user\Source\Repos\qopas\GameOfLife\Automata\bin\Debug\net5.0\Automata.pdb
+C:\Users\user\Source\Repos\qopas\GameOfLife\Automata\obj\Debug\net5.0\Automata.csproj.AssemblyReference.cache
+C:\Users\user\Source\Repos\qopas\GameOfLife\Automata\obj\Debug\net5.0\Automata.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\user\Source\Repos\qopas\GameOfLife\Automata\obj\Debug\net5.0\Automata.AssemblyInfoInputs.cache
+C:\Users\user\Source\Repos\qopas\GameOfLife\Automata\obj\Debug\net5.0\Automata.AssemblyInfo.cs
+C:\Users\user\Source\Repos\qopas\GameOfLife\Automata\obj\Debug\net5.0\Automata.csproj.CoreCompileInputs.cache
+C:\Users\user\Source\Repos\qopas\GameOfLife\Automata\obj\Debug\net5.0\Automata.dll
+C:\Users\user\Source\Repos\qopas\GameOfLife\Automata\obj\Debug\net5.0\refint\Automata.dll
+C:\Users\user\Source\Repos\qopas\GameOfLife\Automata\obj\Debug\net5.0\Automata.pdb
+C:\Users\user\Source\Repos\qopas\GameOfLife\Automata\obj\Debug\net5.0\ref\Automata.dll

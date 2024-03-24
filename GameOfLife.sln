@@ -1,13 +1,20 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31402.337
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameOfLife", "GameOfLife\GameOfLife.csproj", "{5F970575-05C6-49DB-873C-46FF3D15532F}"
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "GameOfLife-Installer", "GameOfLife-Installer\GameOfLife-Installer.vdproj", "{59E29D3B-4DAB-4B68-9F05-9E1DE05759D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Automata", "Automata\Automata.csproj", "{5871A84D-5137-49A9-8C7E-F59ECAA7D2DA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Automata", "Automata\Automata.csproj", "{5871A84D-5137-49A9-8C7E-F59ECAA7D2DA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FFA7DEFE-3293-4FD0-834A-6FE0408C2A37}"
+	ProjectSection(SolutionItems) = preProject
+		BackSong.wav = BackSong.wav
+	EndProjectSection
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup1", "Setup1\Setup1.vdproj", "{E1DC5ABE-344A-4F3A-AC9D-67AE09D7C012}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,6 +44,10 @@ Global
 		{5871A84D-5137-49A9-8C7E-F59ECAA7D2DA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5871A84D-5137-49A9-8C7E-F59ECAA7D2DA}.Release|x64.ActiveCfg = Release|Any CPU
 		{5871A84D-5137-49A9-8C7E-F59ECAA7D2DA}.Release|x64.Build.0 = Release|Any CPU
+		{E1DC5ABE-344A-4F3A-AC9D-67AE09D7C012}.Debug|Any CPU.ActiveCfg = Debug
+		{E1DC5ABE-344A-4F3A-AC9D-67AE09D7C012}.Debug|x64.ActiveCfg = Debug
+		{E1DC5ABE-344A-4F3A-AC9D-67AE09D7C012}.Release|Any CPU.ActiveCfg = Release
+		{E1DC5ABE-344A-4F3A-AC9D-67AE09D7C012}.Release|x64.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -45,4 +56,3 @@ Global
 		SolutionGuid = {FFBA853F-A42E-4F9B-B1A8-D56BD20895ED}
 	EndGlobalSection
 EndGlobal
-

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "9fFWlnqpOOYSDbqoFz4GGay4X+NOQzu1okmGqounuwgU0a4afmWwtHkI46cKLXIj8oc7v2018Gj/AoDDAMK5/w==",
+  "dgSpecHash": "rvSV3uwHJdK/z1rJ0gTGvyJp0mtz1XjNtwdZclgEd5TbB2s2s/OKlsUvwaEFu/zA0dbPDuJGz34kOvYNs2jvMg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\user\\Source\\Repos\\DennisSc\\GameOfLife\\Automata\\Automata.csproj",
+  "projectFilePath": "C:\\Users\\user\\Source\\Repos\\qopas\\GameOfLife\\Automata\\Automata.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

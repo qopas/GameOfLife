@@ -101,14 +101,22 @@ namespace Automata
 
     public class Rule30
     {
-
         private int WidthX;
-
         private int WidthY;
+
+        // Define the coordinates of the designated zone
+        private int zoneStartX;
+        private int zoneEndX;
+        private int zoneStartY;
+        private int zoneEndY;
 
         public Rule30()
         {
-
+            // Initialize the coordinates of the designated zone
+            zoneStartX = 0;  // Define the starting X coordinate of the zone
+            zoneEndX = 1012;    // Define the ending X coordinate of the zone
+            zoneStartY = 0;   // Define the starting Y coordinate of the zone
+            zoneEndY = 562;    // Define the ending Y coordinate of the zone
         }
 
         private int ToInt(bool value)
@@ -116,57 +124,6 @@ namespace Automata
             return value ? 1 : 0;
         }
 
-
-
-        /// <summary>
-        /// calculate next generation of game of life cells based on existing board of cells
-        /// </summary>
-        /// <param name="board">existing board to base calculations on</param>
-        /// <returns>bool[,] array with next generation board of cells</returns>
-        public bool[,] calculateNextBoardScanline(bool[,] board)
-        {
-            WidthX = board.GetLength(0);
-            WidthY = board.GetLength(1);
-
-            bool[,] Tempboard = new bool[WidthX, WidthY];
-
-            for (int j = 0; j < WidthY - 1; j++)
-            {
-                for (int i = 0; i < WidthX - 3; i++)
-                {
-
-                    if (board[i, j] == true)
-                        if (board[i + 1, j] == true)
-                            Tempboard[i + 1, j + 1] = false;
-                        else
-                            if (board[i + 2, j] == true)
-                            Tempboard[i + 1, j + 1] = false;
-                        else
-                            Tempboard[i + 1, j + 1] = true;
-                    else if (board[i, j] == false)
-                        if (board[i + 1, j] == true)
-                            Tempboard[i + 1, j + 1] = true;
-                        else
-                            if (board[i + 2, j] == true)
-                            Tempboard[i + 1, j + 1] = true;
-                        else
-                            Tempboard[i + 1, j + 1] = false;
-
-
-
-                }
-            }
-
-
-            return Tempboard;
-        }
-
-
-        /// <summary>
-        /// calculate next generation of game of life cells based on existing board of cells
-        /// </summary>
-        /// <param name="board">existing board to base calculations on</param>
-        /// <returns>bool[,] array with next generation board of cells</returns>
         public bool[,] calculateNextBoard(bool[,] board)
         {
             WidthX = board.GetLength(0);
@@ -178,83 +135,52 @@ namespace Automata
             {
                 for (int i = 0; i < WidthX - 3; i++)
                 {
-                    if (board[i, j] == true)
-                        Tempboard[i, j] = true;
-
-                    if (board[i, j] == true)
+                    if (IsInZone(i, j)) // Check if the cell is within the designated zone
                     {
-                        if (board[i + 1, j] == true)
-                            Tempboard[i + 1, j + 1] = false;
+                        // Apply the new rule within the designated zone
+                        // Example of a new rule: if a cell is alive, make its neighbor alive
+                        if (board[i, j] == true)
+                            Tempboard[i + 1, j + 1] = true;
                         else
+                            Tempboard[i + 1, j + 1] = false;
+                    }
+                    else // Apply standard rules outside the designated zone
+                    {
+                        if (board[i, j] == true)
+                            Tempboard[i, j] = true;
+
+                        if (board[i, j] == true)
                         {
-                            if (board[i + 2, j] == true)
+                            if (board[i + 1, j] == true)
                                 Tempboard[i + 1, j + 1] = false;
                             else
+                            {
+                                if (board[i + 2, j] == true)
+                                    Tempboard[i + 1, j + 1] = false;
+                                else
+                                    Tempboard[i + 1, j + 1] = true;
+                            }
+                        }
+                        else if (board[i, j] == false)
+                        {
+                            if (board[i + 1, j] == true)
                                 Tempboard[i + 1, j + 1] = true;
+                            else if (board[i + 2, j] == true)
+                                Tempboard[i + 1, j + 1] = true;
+                            else
+                                Tempboard[i + 1, j + 1] = false;
                         }
                     }
-                    else if (board[i, j] == false)
-                    {
-                        if (board[i + 1, j] == true)
-                            Tempboard[i + 1, j + 1] = true;
-                        else if (board[i + 2, j] == true)
-                            Tempboard[i + 1, j + 1] = true;
-                        else
-                            Tempboard[i + 1, j + 1] = false;
-                    }
-
-
                 }
             }
-
 
             return Tempboard;
         }
 
-
-        /// <summary>
-        /// calculate next generation of game of life cells based on existing board of cells
-        /// </summary>
-        /// <param name="board">existing board to base calculations on</param>
-        /// <returns>bool[,] array with next generation board of cells</returns>
-        public bool[,] calculateNextBoardBackwards(bool[,] board)
+        // Helper method to check if a cell is within the designated zone
+        private bool IsInZone(int x, int y)
         {
-            WidthX = board.GetLength(0);
-            WidthY = board.GetLength(1);
-
-            bool[,] Tempboard = new bool[WidthX, WidthY];
-
-            for (int j = 1; j < WidthY; j++)
-            {
-                for (int i = 0; i < WidthX - 3; i++)
-                {
-                    if (board[i, j])
-                        Tempboard[i, j - 1] = true;
-
-                    if (board[i, j] == true)
-                        if (board[i + 1, j] == true)
-                            Tempboard[i + 1, j] = false;
-                        else
-                            if (board[i + 2, j] == true)
-                            Tempboard[i + 1, j] = false;
-                        else
-                            Tempboard[i + 1, j] = true;
-                    else if (board[i, j] == false)
-                        if (board[i + 1, j] == true)
-                            Tempboard[i + 1, j] = true;
-                        else
-                            if (board[i + 2, j] == true)
-                            Tempboard[i + 1, j] = true;
-                        else
-                            Tempboard[i + 1, j] = false;
-
-
-
-                }
-            }
-
-
-            return Tempboard;
+            return x >= zoneStartX && x <= zoneEndX && y >= zoneStartY && y <= zoneEndY;
         }
     }
 

@@ -33,11 +33,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\user\\Source\\Repos\\DennisSc\\GameOfLife\\GameOfLife\\GameOfLife.csproj",
+      "projectUniqueName": "C:\\Users\\user\\Source\\Repos\\qopas\\GameOfLife\\GameOfLife\\GameOfLife.csproj",
       "projectName": "GameOfLife",
-      "projectPath": "C:\\Users\\user\\Source\\Repos\\DennisSc\\GameOfLife\\GameOfLife\\GameOfLife.csproj",
+      "projectPath": "C:\\Users\\user\\Source\\Repos\\qopas\\GameOfLife\\GameOfLife\\GameOfLife.csproj",
       "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\user\\Source\\Repos\\DennisSc\\GameOfLife\\GameOfLife\\obj\\",
+      "outputPath": "C:\\Users\\user\\Source\\Repos\\qopas\\GameOfLife\\GameOfLife\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "D:\\visual3\\NuGetPackages"
@@ -59,8 +59,8 @@
         "net5.0-windows7.0": {
           "targetAlias": "net5.0-windows",
           "projectReferences": {
-            "C:\\Users\\user\\Source\\Repos\\DennisSc\\GameOfLife\\Automata\\Automata.csproj": {
-              "projectPath": "C:\\Users\\user\\Source\\Repos\\DennisSc\\GameOfLife\\Automata\\Automata.csproj"
+            "C:\\Users\\user\\Source\\Repos\\qopas\\GameOfLife\\Automata\\Automata.csproj": {
+              "projectPath": "C:\\Users\\user\\Source\\Repos\\qopas\\GameOfLife\\Automata\\Automata.csproj"
             }
           }
         }

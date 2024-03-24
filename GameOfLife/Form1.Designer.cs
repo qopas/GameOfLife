@@ -20,6 +20,7 @@ namespace GameOfLife
 
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             button1 = new System.Windows.Forms.Button();
             button2 = new System.Windows.Forms.Button();
             label1 = new System.Windows.Forms.Label();
@@ -52,6 +53,7 @@ namespace GameOfLife
             groupBox5 = new System.Windows.Forms.GroupBox();
             groupBox6 = new System.Windows.Forms.GroupBox();
             panel1 = new System.Windows.Forms.Panel();
+            timer4 = new System.Windows.Forms.Timer(components);
             ((System.ComponentModel.ISupportInitialize)trackBar1).BeginInit();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -203,7 +205,6 @@ namespace GameOfLife
             label4.Size = new System.Drawing.Size(26, 15);
             label4.TabIndex = 8;
             label4.Text = "n/a";
-
             // 
             // label5
             // 
@@ -215,7 +216,6 @@ namespace GameOfLife
             label5.Size = new System.Drawing.Size(26, 15);
             label5.TabIndex = 9;
             label5.Text = "n/a";
-
             // 
             // label6
             // 
@@ -426,7 +426,6 @@ namespace GameOfLife
             label7.Size = new System.Drawing.Size(75, 15);
             label7.TabIndex = 18;
             label7.Text = "RenderTime:";
-
             // 
             // label8
             // 
@@ -438,7 +437,6 @@ namespace GameOfLife
             label8.Size = new System.Drawing.Size(60, 15);
             label8.TabIndex = 17;
             label8.Text = "CalcTime:";
-
             // 
             // label9
             // 
@@ -450,7 +448,6 @@ namespace GameOfLife
             label9.Size = new System.Drawing.Size(72, 15);
             label9.TabIndex = 16;
             label9.Text = "FrameTime:";
-
             // 
             // groupBox5
             // 
@@ -500,6 +497,10 @@ namespace GameOfLife
             panel1.Size = new System.Drawing.Size(1387, 162);
             panel1.TabIndex = 21;
             panel1.Paint += panel1_Paint;
+            // 
+            // timer4
+            // 
+            timer4.Tick += timer4_Tick;
             // 
             // Form1
             // 
@@ -568,6 +569,7 @@ namespace GameOfLife
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Timer timer4;
     }
 }
 

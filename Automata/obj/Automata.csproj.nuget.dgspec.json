@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\user\\Source\\Repos\\DennisSc\\GameOfLife\\Automata\\Automata.csproj": {}
+    "C:\\Users\\user\\Source\\Repos\\qopas\\GameOfLife\\Automata\\Automata.csproj": {}
   },
   "projects": {
-    "C:\\Users\\user\\Source\\Repos\\DennisSc\\GameOfLife\\Automata\\Automata.csproj": {
+    "C:\\Users\\user\\Source\\Repos\\qopas\\GameOfLife\\Automata\\Automata.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\user\\Source\\Repos\\DennisSc\\GameOfLife\\Automata\\Automata.csproj",
+        "projectUniqueName": "C:\\Users\\user\\Source\\Repos\\qopas\\GameOfLife\\Automata\\Automata.csproj",
         "projectName": "Automata",
-        "projectPath": "C:\\Users\\user\\Source\\Repos\\DennisSc\\GameOfLife\\Automata\\Automata.csproj",
+        "projectPath": "C:\\Users\\user\\Source\\Repos\\qopas\\GameOfLife\\Automata\\Automata.csproj",
         "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\user\\Source\\Repos\\DennisSc\\GameOfLife\\Automata\\obj\\",
+        "outputPath": "C:\\Users\\user\\Source\\Repos\\qopas\\GameOfLife\\Automata\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\visual3\\NuGetPackages"
